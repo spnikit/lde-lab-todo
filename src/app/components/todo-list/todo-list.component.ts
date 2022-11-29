@@ -5,7 +5,8 @@ import {Todo} from "../../model/Todo";
 @Component({
   selector: 'lde-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
+  providers: [TodoService]
 })
 export class TodoListComponent {
 

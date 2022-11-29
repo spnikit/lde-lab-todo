@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Todo, TodoStatus} from "../model/Todo";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TodoService {
 
   private todoList: Todo[] = [];
