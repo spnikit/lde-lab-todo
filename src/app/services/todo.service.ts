@@ -4,15 +4,15 @@ import {Todo, TodoStatus} from "../model/Todo";
 @Injectable({
   providedIn: 'root'
 })
-export class TodoServiceService {
+export class TodoService {
 
   private todoList: Todo[] = [];
 
   constructor() {
     this.todoList = [
       new Todo(1, 'task-1'),
-      new Todo(2, 'task-2'),
-      new Todo(3, 'task-3'),
+      new Todo(2, 'task-2', 'important'),
+      new Todo(3, 'task-3', 'completed'),
     ]
   }
 
