@@ -39,4 +39,6 @@ export class TodoServiceService {
 }
 
 // todo: id где лучше генерить
-// todo: вопрос immutability, соблюдать ли его, работая с коллециями
+
+
+
