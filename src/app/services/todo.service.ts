@@ -16,7 +16,7 @@ export class TodoService {
     ]
   }
 
-  get todos(): readonly Todo[] {
+  get todos(): Todo[] {
     return this.todoList;
   }
 

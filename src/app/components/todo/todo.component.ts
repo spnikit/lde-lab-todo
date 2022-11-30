@@ -13,14 +13,10 @@ export class TodoComponent {
   @Output() changeStatus = new EventEmitter<Todo>();
   @Output() deleteTodo = new EventEmitter<Todo>();
 
-  private backgroundClasses = {
+  backgroundClasses = {
     simple: 'simple',
     important: 'important',
     completed: 'completed'
-  }
-
-  getClasses(status: TodoStatus) {
-    return this.backgroundClasses[status];
   }
 
   statuses: TodoStatus[] = [
@@ -28,6 +24,10 @@ export class TodoComponent {
     'important',
     'completed'
   ]
+
+  getClasses(status: TodoStatus) {
+    return this.backgroundClasses[status];
+  }
 
 
   handleChange(status: NgModel) {

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {NgModel} from "@angular/forms";
-import {TodoStatus} from "../../model/Todo";
+import {ITodoFilter, TodoStatus} from "../../model/Todo";
 
 
 @Component({
@@ -9,7 +9,7 @@ import {TodoStatus} from "../../model/Todo";
   styleUrls: ['./search-todo.component.scss']
 })
 export class SearchTodoComponent {
-  @Output() filter = new EventEmitter<{ search: string, status: string }>();
+  @Output() filter = new EventEmitter<ITodoFilter>();
 
   statuses: (TodoStatus | 'все')[] = [
     'simple',
@@ -21,11 +21,13 @@ export class SearchTodoComponent {
   handleSearchClick(search: NgModel, status: NgModel) {
     this.filter.emit({search: search.value, status: status.value});
     search.reset();
+    status.reset('');
+
   }
 
   handleResetClick(search: NgModel, status: NgModel) {
     this.filter.emit({search: '', status: ''});
-    status.reset();
+    status.reset('');
     search.reset();
   }
 

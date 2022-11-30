@@ -11,3 +11,9 @@ export class Todo {
 
 
 export type TodoStatus = 'simple' | 'important' | 'completed';
+
+
+export interface ITodoFilter {
+  search: string;
+  status: string;
+}

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {TodoService} from "../../services/todo.service";
-import {Todo} from "../../model/Todo";
+import {ITodoFilter, Todo} from "../../model/Todo";
 
 @Component({
   selector: 'lde-todo-list',
@@ -11,7 +11,7 @@ import {Todo} from "../../model/Todo";
 export class TodoListComponent {
 
 
-  taskFilter = {
+  todoFilter: ITodoFilter = {
     search: '',
     status: ''
   };
@@ -21,48 +21,52 @@ export class TodoListComponent {
 
 
   get todos() {
-
-    if (this.taskFilter.search && !this.taskFilter.status) {
-      return this.todoService.todos.filter(
-        todo => todo.task.toLowerCase().includes(this.taskFilter.search.toLowerCase())
-      )
-    }
-    if (!this.taskFilter.search && this.taskFilter.status) {
-      return this.todoService.todos.filter(
-        todo => todo.status === this.taskFilter.status
-      )
-    }
-    if (this.taskFilter.search && this.taskFilter.status) {
-      return this.todoService.todos.filter(
-        todo =>
-          todo.status === this.taskFilter.status &&
-          todo.task.toLowerCase().includes(this.taskFilter.search.toLowerCase())
-      )
-    }
-    return this.todoService.todos;
-
+    return this.filterTodoList(this.todoFilter, this.todoService.todos);
   }
 
-  setFilter(filterValue: { search: string, status: string }) {
-    this.taskFilter.search = filterValue.search;
-    this.taskFilter.status = filterValue.status;
+  setFilter(filterValue: ITodoFilter) {
+    this.todoFilter.search = filterValue.search;
+    this.todoFilter.status = filterValue.status;
+  }
+
+  filterTodoList(filter: ITodoFilter, list: Todo[]){
+    if (filter.search && !filter.status) {
+      return list.filter(
+        todo => todo.task.toLowerCase().includes(filter.search.toLowerCase())
+      )
+    }
+    if (!filter.search && filter.status) {
+      return list.filter(
+        todo => todo.status === filter.status
+      )
+    }
+    if (filter.search && filter.status) {
+      return list.filter(
+        todo =>
+          todo.status === filter.status &&
+          todo.task.toLowerCase().includes(filter.search.toLowerCase())
+      )
+    }
+    return list;
   }
 
   todoTrackBy(index: number, todo: Todo) {
     return todo.id;
   }
 
-  createTodo(task: string) {
+  onCreate(task: string) {
     this.todoService.addTodo(task);
   }
 
-  onUpdate($event: Todo) {
-    this.todoService.changeStatus($event);
+  onUpdate(todo: Todo) {
+    this.todoService.changeStatus(todo);
   }
 
-  onDelete($event: Todo) {
-    this.todoService.deleteTodo($event);
+  onDelete(todo: Todo) {
+    this.todoService.deleteTodo(todo);
   }
+
+
 }
 
 //todo: отобразить уведомление, когда лист пустой
