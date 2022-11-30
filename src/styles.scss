@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input,
+select,
+label {
+  margin: 0;
+  //padding: 0;
+  display: block;
+  width: 100%;
+}
+
+input{
+  line-height: 28px;
+  max-width: 400px;
+}
+
+button {
+  padding: 4px 18px;
+}
+

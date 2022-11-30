@@ -1,11 +1,32 @@
+.todo-card{
+  padding: 8px 16px;
+  border-radius: 5px;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+
+  .status {
+    width: initial;
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+
+  button {
+    //margin-left: auto;
+  }
+
+}
+
+
+
 .simple {
-  background-color: #a2d2ff;
+  background-color: #faf0ca;
 }
 
 .important {
-  background-color: #f28f3b;
+  background-color: #fec5bb;
 }
 
 .completed {
-  background-color: #a5a5a5;
+  background-color: #cccccc;
 }
