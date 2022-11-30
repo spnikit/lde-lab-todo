@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TodoService} from "../../services/todo.service";
 import {Todo} from "../../model/Todo";
 
@@ -13,12 +13,15 @@ export class TodoListComponent {
   constructor(private todoService: TodoService) {
   }
 
-  get todos(){
+  get todos() {
     return this.todoService.todos;
   }
 
-  todoTrackBy(index: number, todo: Todo){
+  todoTrackBy(index: number, todo: Todo) {
     return todo.id;
   }
 
+  handleNewTodo(task: string) {
+    this.todoService.addTodo(task);
+  }
 }

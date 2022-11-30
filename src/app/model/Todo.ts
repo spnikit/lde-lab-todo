@@ -1,7 +1,7 @@
 export class Todo {
 
   constructor(
-    public id: number,
+    public id: string,
     public task: string,
     public status: TodoStatus = 'simple'
     ) {

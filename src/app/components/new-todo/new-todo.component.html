@@ -1,0 +1,8 @@
+<div>
+  <label>
+    <span>Что сделать: </span>
+    <input type="text" name="task" required ngModel #task="ngModel"/>
+  </label>
+  <button
+    (click)="handleClick(task)">Создать</button>
+</div>

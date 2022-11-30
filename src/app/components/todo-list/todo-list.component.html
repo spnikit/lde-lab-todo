@@ -2,4 +2,6 @@
   <lde-todo
     *ngFor="let todo of todos; trackBy: todoTrackBy"
     [todo]="todo"></lde-todo>
+
+  <lde-new-todo (newTodo)="handleNewTodo($event)"></lde-new-todo>
 </div>
