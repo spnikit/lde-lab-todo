@@ -11,6 +11,7 @@ export class TodoComponent {
 
   @Input() todo!: Todo;
   @Output() changeStatus = new EventEmitter<Todo>();
+  @Output() deleteTodo = new EventEmitter<Todo>();
 
   private backgroundClasses = {
     simple: 'simple',
@@ -32,6 +33,10 @@ export class TodoComponent {
   handleChange(status: NgModel) {
     this.todo.status = status.value;
     this.changeStatus.emit(this.todo);
+  }
+
+  handleClick(todo: Todo) {
+    this.deleteTodo.emit(todo);
   }
 }
 

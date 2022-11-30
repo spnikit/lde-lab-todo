@@ -4,4 +4,5 @@
           (change)="handleChange(status)">
     <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
   </select>
+  <button (click)="handleClick(todo)">Удалить</button>
 </div>

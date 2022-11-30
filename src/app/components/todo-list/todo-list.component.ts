@@ -56,8 +56,12 @@ export class TodoListComponent {
     this.todoService.addTodo(task);
   }
 
-  updateTodo($event: Todo) {
-    this.todoService.changeTodoStatus($event);
+  onUpdate($event: Todo) {
+    this.todoService.changeStatus($event);
+  }
+
+  onDelete($event: Todo) {
+    this.todoService.deleteTodo($event);
   }
 }
 

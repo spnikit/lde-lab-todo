@@ -25,14 +25,14 @@ export class TodoService {
       uuidv4(),
       task
     )
-    this.todoList = [...this.todoList, todo];
+    this.todoList.push(todo);
   }
 
-  removeTodo(todoId: string) {
-    this.todoList.filter(todo => todo.id !== todoId);
+  deleteTodo(todo: Todo) {
+    this.todoList = this.todoList.filter(elem => elem.id !== todo.id);
   }
 
-  changeTodoStatus(todo: Todo) {
+  changeStatus(todo: Todo) {
     this.todoList.map(elem => {
       if (elem.id === todo.id) {
         elem.status = todo.status;
@@ -42,7 +42,6 @@ export class TodoService {
   }
 }
 
-// todo: id где лучше генерить
 
 
 
