@@ -10,11 +10,42 @@ import {Todo} from "../../model/Todo";
 })
 export class TodoListComponent {
 
+
+  taskFilter = {
+    search: '',
+    status: ''
+  };
+
   constructor(private todoService: TodoService) {
   }
 
+
   get todos() {
+
+    if (this.taskFilter.search && !this.taskFilter.status) {
+      return this.todoService.todos.filter(
+        todo => todo.task.toLowerCase().includes(this.taskFilter.search.toLowerCase())
+      )
+    }
+    if (!this.taskFilter.search && this.taskFilter.status) {
+      return this.todoService.todos.filter(
+        todo => todo.status === this.taskFilter.status
+      )
+    }
+    if (this.taskFilter.search && this.taskFilter.status) {
+      return this.todoService.todos.filter(
+        todo =>
+          todo.status === this.taskFilter.status &&
+          todo.task.toLowerCase().includes(this.taskFilter.search.toLowerCase())
+      )
+    }
     return this.todoService.todos;
+
+  }
+
+  setFilter(filterValue: { search: string, status: string }) {
+    this.taskFilter.search = filterValue.search;
+    this.taskFilter.status = filterValue.status;
   }
 
   todoTrackBy(index: number, todo: Todo) {
@@ -25,3 +56,5 @@ export class TodoListComponent {
     this.todoService.addTodo(task);
   }
 }
+
+//todo: отобразить уведомление, когда лист пустой

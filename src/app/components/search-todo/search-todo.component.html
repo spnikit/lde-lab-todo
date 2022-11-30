@@ -1,0 +1,17 @@
+<div>
+  <label>
+    <span>Искать: </span>
+    <input type="text" name="search" #search="ngModel" ngModel/>
+  </label>
+  <label>
+    <span>Статус: </span>
+    <select name="status" ngModel #status="ngModel">
+      <option *ngFor="let status of statuses"
+              [ngValue]="status === 'все' ? '' : status"
+              [selected]="status === 'все'"
+      >{{status}}</option>
+    </select>
+  </label>
+  <button (click)="handleSearchClick(search, status)">Поиск</button>
+  <button (click)="handleResetClick(search, status)">Отмена поиска</button>
+</div>
