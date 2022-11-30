@@ -10,7 +10,6 @@ import {ITodoFilter, Todo} from "../../model/Todo";
 })
 export class TodoListComponent {
 
-
   todoFilter: ITodoFilter = {
     search: '',
     status: ''
@@ -24,7 +23,7 @@ export class TodoListComponent {
     return this.filterTodoList(this.todoFilter, this.todoService.todos);
   }
 
-  setFilter(filterValue: ITodoFilter) {
+  onSetFilter(filterValue: ITodoFilter) {
     this.todoFilter.search = filterValue.search;
     this.todoFilter.status = filterValue.status;
   }
