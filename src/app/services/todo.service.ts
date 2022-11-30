@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
-import {Todo, TodoStatus} from "../model/Todo";
+import {Todo} from "../model/Todo";
 
 @Injectable()
 export class TodoService {
@@ -32,12 +32,12 @@ export class TodoService {
     this.todoList.filter(todo => todo.id !== todoId);
   }
 
-  changeTodoStatus(todoId: string, todoStatus: TodoStatus) {
-    this.todoList.map(todo => {
-      if (todo.id === todoId) {
-        todo.status = todoStatus;
+  changeTodoStatus(todo: Todo) {
+    this.todoList.map(elem => {
+      if (elem.id === todo.id) {
+        elem.status = todo.status;
       }
-      return todo;
+      return elem;
     })
   }
 }

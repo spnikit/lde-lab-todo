@@ -1,3 +1,7 @@
 <div [ngClass]="getClasses(todo.status)">
-  {{todo.task}}
+  <span>{{todo.task}}</span>
+  <select name="status" #status="ngModel" [ngModel]="todo.status"
+          (change)="handleChange(status)">
+    <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
+  </select>
 </div>

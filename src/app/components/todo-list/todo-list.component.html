@@ -1,8 +1,9 @@
 <div>
   <lde-todo
     *ngFor="let todo of todos; trackBy: todoTrackBy"
+    (changeStatus)="updateTodo($event)"
     [todo]="todo"></lde-todo>
 
-  <lde-new-todo (newTodo)="handleNewTodo($event)"></lde-new-todo>
+  <lde-new-todo (newTodo)="createTodo($event)"></lde-new-todo>
   <lde-search-todo (filter)="setFilter($event)"></lde-search-todo>
 </div>

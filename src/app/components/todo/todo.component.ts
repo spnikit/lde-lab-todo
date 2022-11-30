@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Todo, TodoStatus} from "../../model/Todo";
+import {NgModel} from "@angular/forms";
 
 @Component({
   selector: 'lde-todo',
@@ -9,6 +10,7 @@ import {Todo, TodoStatus} from "../../model/Todo";
 export class TodoComponent {
 
   @Input() todo!: Todo;
+  @Output() changeStatus = new EventEmitter<Todo>();
 
   private backgroundClasses = {
     simple: 'simple',
@@ -17,11 +19,22 @@ export class TodoComponent {
   }
 
   getClasses(status: TodoStatus) {
-
     return this.backgroundClasses[status];
   }
 
+  statuses: TodoStatus[] = [
+    'simple',
+    'important',
+    'completed'
+  ]
+
+
+  handleChange(status: NgModel) {
+    this.todo.status = status.value;
+    this.changeStatus.emit(this.todo);
+  }
 }
 
 // todo: how to implement style and classes pick correctly?
 // todo: maybe rename to todoCard
+// todo: change todo with 2-way data binding

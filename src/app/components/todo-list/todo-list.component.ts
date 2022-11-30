@@ -52,8 +52,12 @@ export class TodoListComponent {
     return todo.id;
   }
 
-  handleNewTodo(task: string) {
+  createTodo(task: string) {
     this.todoService.addTodo(task);
+  }
+
+  updateTodo($event: Todo) {
+    this.todoService.changeTodoStatus($event);
   }
 }
 
