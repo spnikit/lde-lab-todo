@@ -33,11 +33,10 @@ export class TodoService {
   }
 
   changeStatus(todo: Todo) {
-    this.todoList.map(elem => {
+    this.todoList.forEach(elem => {
       if (elem.id === todo.id) {
         elem.status = todo.status;
       }
-      return elem;
     })
   }
 }

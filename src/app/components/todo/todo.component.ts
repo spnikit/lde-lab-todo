@@ -1,11 +1,12 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {Todo, TodoStatus} from "../../model/Todo";
 import {NgModel} from "@angular/forms";
 
 @Component({
   selector: 'lde-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoComponent {
 

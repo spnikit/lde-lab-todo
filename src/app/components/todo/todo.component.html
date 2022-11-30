@@ -1,6 +1,7 @@
 <div class="todo-card" [ngClass]="getClasses(todo.status)">
   <span>{{todo.task}}</span>
-  <select class="status" name="status" #status="ngModel" [ngModel]="todo.status"
+  <select class="status" name="status" #status="ngModel"
+          [ngModel]="todo.status"
           (change)="handleChange(status)">
     <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
   </select>

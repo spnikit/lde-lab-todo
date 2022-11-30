@@ -6,7 +6,7 @@ import {ITodoFilter, Todo} from "../../model/Todo";
   selector: 'lde-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
-  providers: [TodoService]
+  providers: [TodoService],
 })
 export class TodoListComponent {
 
