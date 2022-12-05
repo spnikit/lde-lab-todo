@@ -1,0 +1,16 @@
+:host {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin-top: 15rem;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width{
+  width: 100%;
+}

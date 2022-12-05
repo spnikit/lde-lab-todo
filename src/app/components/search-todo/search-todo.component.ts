@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {NgModel} from "@angular/forms";
-import {ITodoFilter, TodoStatus} from "../../model/Todo";
+import {ITodoFilter, TodoStatus} from "../../model/todo.model";
 
 
 @Component({

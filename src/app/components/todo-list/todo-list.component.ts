@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {TodoService} from "../../services/todo.service";
-import {ITodoFilter, Todo} from "../../model/Todo";
+import {ITodoFilter, TodoModel} from "../../model/todo.model";
 
 @Component({
   selector: 'lde-todo-list',
@@ -28,7 +28,7 @@ export class TodoListComponent {
     this.todoFilter.status = filterValue.status;
   }
 
-  filterTodoList(filter: ITodoFilter, list: Todo[]){
+  filterTodoList(filter: ITodoFilter, list: TodoModel[]){
     if (filter.search && !filter.status) {
       return list.filter(
         todo => todo.task.toLowerCase().includes(filter.search.toLowerCase())
@@ -49,7 +49,7 @@ export class TodoListComponent {
     return list;
   }
 
-  todoTrackBy(index: number, todo: Todo) {
+  todoTrackBy(index: number, todo: TodoModel) {
     return todo.id;
   }
 
@@ -57,11 +57,11 @@ export class TodoListComponent {
     this.todoService.addTodo(task);
   }
 
-  onUpdate(todo: Todo) {
+  onUpdate(todo: TodoModel) {
     this.todoService.changeStatus(todo);
   }
 
-  onDelete(todo: Todo) {
+  onDelete(todo: TodoModel) {
     this.todoService.deleteTodo(todo);
   }
 

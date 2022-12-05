@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Todo, TodoStatus} from "../../model/Todo";
+import {TodoModel, TodoStatus} from "../../model/todo.model";
 import {NgModel} from "@angular/forms";
 
 @Component({
@@ -10,9 +10,9 @@ import {NgModel} from "@angular/forms";
 })
 export class TodoComponent {
 
-  @Input() todo!: Todo;
-  @Output() changeStatus = new EventEmitter<Todo>();
-  @Output() deleteTodo = new EventEmitter<Todo>();
+  @Input() todo!: TodoModel;
+  @Output() changeStatus = new EventEmitter<TodoModel>();
+  @Output() deleteTodo = new EventEmitter<TodoModel>();
 
   backgroundClasses = {
     simple: 'simple',
@@ -36,7 +36,7 @@ export class TodoComponent {
     this.changeStatus.emit(this.todo);
   }
 
-  handleClick(todo: Todo) {
+  handleClick(todo: TodoModel) {
     this.deleteTodo.emit(todo);
   }
 }
