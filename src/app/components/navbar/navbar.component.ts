@@ -14,6 +14,11 @@ export class NavbarComponent {
 
   links: (string | undefined)[];
   activeLink: string | undefined;
+  pathToMenuMap = {
+    main: "Главная",
+    auth: "Вход",
+    list: "Список ToDo"
+  }
 
   constructor(
     private router: Router,
@@ -23,16 +28,15 @@ export class NavbarComponent {
     this.links = routes.map(route => route.path).filter(path => path !== "**");
     this.activeLink = this.links[0]
 
-    // detect changes in routing and apply current path to activeLink
+    // listen to routes change
     this.router.events.forEach(event => {
-
       // show snackbar if not logged in
       if (event instanceof RouterEvent) {
         if (event.url === "/list" && !this.auth.isAuthenticated) {
           this._snackBar.open("Залогиньтесь для доступа к ToDo", "Хорошо!")
         }
       }
-
+      // detect changes in routing and apply current path to activeLink
       if (event instanceof NavigationEnd) {
         this.activeLink = event.url.substring(1);
       }

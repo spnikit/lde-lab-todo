@@ -18,6 +18,7 @@ import {environment} from "../environments/environment";
 import {AuthGuard} from "./guards/auth.guard";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MapPathToMenuNamePipe } from './pipes/map-path-to-menu-name.pipe';
 
 export const routes: Routes = [
   {path: "main", component: TodoMainComponent},
@@ -35,7 +36,8 @@ export const routes: Routes = [
     SearchTodoComponent,
     AuthComponent,
     TodoMainComponent,
-    NavbarComponent
+    NavbarComponent,
+    MapPathToMenuNamePipe
   ],
   imports: [
     BrowserModule,

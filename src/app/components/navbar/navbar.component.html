@@ -4,7 +4,7 @@
      [routerLink]="'/'+ link"
      [active]="activeLink == link"
   >
-    {{link}}
+    {{link && (link | mapPathToMenuName: pathToMenuMap)}}
   </a>
 </nav>
 <mat-tab-nav-panel #tabPanel>

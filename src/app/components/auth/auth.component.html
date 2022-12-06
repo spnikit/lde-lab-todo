@@ -5,17 +5,22 @@
     <mat-label>Email:</mat-label>
     <input [(ngModel)]="email" matInput name="email" type="email" required>
   </mat-form-field>
+
   <mat-form-field class="full-width">
     <mat-label>Password</mat-label>
     <input [(ngModel)]="password" matInput name="password" type="password" required>
   </mat-form-field>
+
   <button type="submit" mat-raised-button color="primary">Войти</button>
+
   <mat-error *ngIf="errorMessage" class="error" >
     {{errorMessage}}
   </mat-error>
+
 </form>
 
 
 <ng-template #logoutBtn>
-  <button (click)="auth.logout()" type="button" mat-raised-button color="primary">Выйти</button>
+  <button (click)="auth.logout()"
+          type="button" mat-raised-button color="primary">Выйти</button>
 </ng-template>

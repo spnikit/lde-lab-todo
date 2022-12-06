@@ -21,7 +21,7 @@ export class AuthService {
     const urlOrigin = this.environment.getValue("apiUrl");
     const path = "/auth/login";
 
-    return this.http.post<{ token: string, message?: string }>(`${urlOrigin}${path}`, {
+    return this.http.post<{ token: string}>(`${urlOrigin}${path}`, {
       email,
       password,
       fio: "fio"
