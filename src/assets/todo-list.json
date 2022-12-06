@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "task": "task-1",
+    "status": "simple"
+  },
+  {
+    "id": "2",
+    "task": "task-2",
+    "status": "important"
+  },
+  {
+    "id": "3",
+    "task": "task-3",
+    "status": "completed"
+  }
+]

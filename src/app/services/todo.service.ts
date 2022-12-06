@@ -2,18 +2,18 @@ import {Injectable} from '@angular/core';
 import {v4 as uuidv4} from 'uuid';
 
 import {TodoModel} from "../model/todo.model";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class TodoService {
 
   private todoList: TodoModel[] = [];
 
-  constructor() {
-    this.todoList = [
-      new TodoModel('1', 'task-1'),
-      new TodoModel('2', 'task-2', 'important'),
-      new TodoModel('3', 'task-3', 'completed'),
-    ]
+  constructor(private http: HttpClient) {
+    this.http.get<TodoModel[]>("assets/todo-list.json")
+      .subscribe(data => {
+        this.todoList = data;
+      })
   }
 
   get todos(): TodoModel[] {
