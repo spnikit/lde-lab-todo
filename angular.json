@@ -59,6 +59,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "lde-lab-todo/src/environments/environment.ts",
+                  "replaceWith": "lde-lab-todo/src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",

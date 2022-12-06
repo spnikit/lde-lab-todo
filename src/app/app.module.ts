@@ -8,10 +8,13 @@ import {NewTodoComponent} from './components/new-todo/new-todo.component';
 import {FormsModule} from "@angular/forms";
 import {SearchTodoComponent} from './components/search-todo/search-todo.component';
 import {MaterialModule} from "./material/material.module";
-import { AuthComponent } from './components/auth/auth.component';
+import {AuthComponent} from './components/auth/auth.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { TodoMainComponent } from './components/todo-main/todo-main.component';
+import {TodoMainComponent} from './components/todo-main/todo-main.component';
 import {RouterModule, Routes} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+import {ENVIRONMENT} from "./services/environment.service";
+import {environment} from "../environments/environment";
 
 const routes: Routes = [
   {path: "main", component: TodoMainComponent},
@@ -35,9 +38,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: ENVIRONMENT, useValue: environment}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
