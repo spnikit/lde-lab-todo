@@ -12,10 +12,11 @@ import {AuthComponent} from './components/auth/auth.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TodoMainComponent} from './components/todo-main/todo-main.component';
 import {RouterModule, Routes} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ENVIRONMENT} from "./services/environment.service";
 import {environment} from "../environments/environment";
 import {AuthGuard} from "./guards/auth.guard";
+import {TokenInterceptor} from "./interceptors/token.interceptor";
 
 const routes: Routes = [
   {path: "main", component: TodoMainComponent},
@@ -43,7 +44,8 @@ const routes: Routes = [
     HttpClientModule
   ],
   providers: [
-    {provide: ENVIRONMENT, useValue: environment}
+    {provide: ENVIRONMENT, useValue: environment},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

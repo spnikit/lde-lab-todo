@@ -38,6 +38,10 @@ export class AuthService {
     localStorage.removeItem("lde-todo_token");
   }
 
+  get token(): string | null {
+    return localStorage.getItem("lde-todo_token");
+  }
+
   get isAuthenticated(): boolean {
     return Boolean(localStorage.getItem("lde-todo_token"));
   }
