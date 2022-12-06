@@ -11,6 +11,14 @@ import {MaterialModule} from "./material/material.module";
 import { AuthComponent } from './components/auth/auth.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TodoMainComponent } from './components/todo-main/todo-main.component';
+import {RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [
+  {path: "main", component: TodoMainComponent},
+  {path: "auth", component: AuthComponent},
+  {path: "list", component: TodoListComponent},
+  {path: "**", redirectTo: "main"}
+];
 
 @NgModule({
   declarations: [
@@ -26,6 +34,7 @@ import { TodoMainComponent } from './components/todo-main/todo-main.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    RouterModule.forRoot(routes),
     MaterialModule
   ],
   providers: [],
