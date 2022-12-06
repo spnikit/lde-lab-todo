@@ -17,8 +17,9 @@ import {ENVIRONMENT} from "./services/environment.service";
 import {environment} from "../environments/environment";
 import {AuthGuard} from "./guards/auth.guard";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {path: "main", component: TodoMainComponent},
   {path: "auth", component: AuthComponent},
   {path: "list", component: TodoListComponent, canActivate: [AuthGuard]},
@@ -33,7 +34,8 @@ const routes: Routes = [
     NewTodoComponent,
     SearchTodoComponent,
     AuthComponent,
-    TodoMainComponent
+    TodoMainComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
