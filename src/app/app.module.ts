@@ -15,11 +15,12 @@ import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {ENVIRONMENT} from "./services/environment.service";
 import {environment} from "../environments/environment";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   {path: "main", component: TodoMainComponent},
   {path: "auth", component: AuthComponent},
-  {path: "list", component: TodoListComponent},
+  {path: "list", component: TodoListComponent, canActivate: [AuthGuard]},
   {path: "**", redirectTo: "main"}
 ];
 
