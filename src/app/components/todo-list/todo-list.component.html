@@ -1,11 +1,18 @@
 <div class="todo-list">
-  <lde-todo
-    *ngFor="let todo of todos; trackBy: todoTrackBy"
-    [todo]="todo"
-    (changeStatus)="onUpdate($event)"
-    (deleteTodo)="onDelete($event)"
-  ></lde-todo>
+  <ng-container *ngIf="todos.length; else loading">
+    <lde-todo
+      *ngFor="let todo of todos; trackBy: todoTrackBy"
+      [todo]="todo"
+      (changeStatus)="onUpdate($event)"
+      (deleteTodo)="onDelete($event)"
+    ></lde-todo>
+  </ng-container>
 
   <lde-new-todo (newTodo)="onCreate($event)"></lde-new-todo>
   <lde-search-todo (filter)="onSetFilter($event)"></lde-search-todo>
 </div>
+
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

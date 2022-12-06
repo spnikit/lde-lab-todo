@@ -15,7 +15,7 @@ export class AuthComponent {
   errorMessage: string = "";
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router
   ) {
   }

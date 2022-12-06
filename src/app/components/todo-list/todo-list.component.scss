@@ -1,8 +1,12 @@
 :host {
   display: block;
+  margin: 0 auto;
+  max-width: 900px;
+  min-width: 400px;
 }
 
 .todo-list{
+  margin-top: 3rem;
   padding: 4px 8px;
   display: flex;
   flex-direction: column;

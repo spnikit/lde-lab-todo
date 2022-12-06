@@ -17,3 +17,5 @@ export interface ITodoFilter {
   search: string;
   status: string;
 }
+
+//todo: change todo status to enum and find out how it works with creating todo from json file with http client

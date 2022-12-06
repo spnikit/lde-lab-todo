@@ -1,4 +1,16 @@
+:host {
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  //align-items: center;
+}
+
 .card {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.header-image{
+  background-image: url('../../../assets/todo.jpg');
+  background-size: cover;
 }

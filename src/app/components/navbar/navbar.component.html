@@ -3,9 +3,10 @@
      *ngFor="let link of links"
      [routerLink]="'/'+ link"
      [active]="activeLink == link"
-     (click)="activeLink = link"
   >
     {{link}}
   </a>
 </nav>
-<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+<mat-tab-nav-panel #tabPanel>
+  <ng-content></ng-content>
+</mat-tab-nav-panel>
