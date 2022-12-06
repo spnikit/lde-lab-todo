@@ -10,6 +10,7 @@ import {SearchTodoComponent} from './components/search-todo/search-todo.componen
 import {MaterialModule} from "./material/material.module";
 import { AuthComponent } from './components/auth/auth.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { TodoMainComponent } from './components/todo-main/todo-main.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     TodoListComponent,
     NewTodoComponent,
     SearchTodoComponent,
-    AuthComponent
+    AuthComponent,
+    TodoMainComponent
   ],
   imports: [
     BrowserModule,
