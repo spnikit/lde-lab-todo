@@ -3,6 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 
 import {TodoModel} from "../model/todo.model";
 import {HttpClient} from "@angular/common/http";
+import {from, Observable} from "rxjs";
 
 @Injectable()
 export class TodoService {
@@ -14,6 +15,10 @@ export class TodoService {
       .subscribe(data => {
         this.todoList = data;
       })
+  }
+
+  get todos$(): Observable<TodoModel[]> {
+    return from([this.todoList]);
   }
 
   get todos(): TodoModel[] {

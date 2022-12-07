@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {TodoService} from "../../services/todo.service";
 import {ITodoFilter, TodoModel} from "../../model/todo.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'lde-todo-list',
@@ -18,6 +19,10 @@ export class TodoListComponent {
   constructor(private todoService: TodoService) {
   }
 
+
+  get todos$(): Observable<TodoModel[]>{
+    return this.todoService.todos$;
+  }
 
   get todos() {
     return this.filterTodoList(this.todoFilter, this.todoService.todos);
