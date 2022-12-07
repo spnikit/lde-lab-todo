@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'mapPathToMenuName'
+  name: 'mapPathToMenuName',
 })
 export class MapPathToMenuNamePipe implements PipeTransform {
 

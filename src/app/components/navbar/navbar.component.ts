@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {routes} from "../../app.module";
 import {NavigationEnd, Router, RouterEvent} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -10,9 +10,9 @@ import {AuthService} from "../../services/auth.service";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, DoCheck {
 
-  links: (string | undefined)[];
+  links: (string | undefined)[] = [];
   activeLink: string | undefined;
   pathToMenuMap = {
     main: "Главная",
@@ -25,6 +25,9 @@ export class NavbarComponent {
     private _snackBar: MatSnackBar,
     private auth: AuthService
   ) {
+  }
+
+  ngOnInit(): void {
     this.links = routes.map(route => route.path).filter(path => path !== "**");
     this.activeLink = this.links[0]
 
@@ -41,6 +44,13 @@ export class NavbarComponent {
         this.activeLink = event.url.substring(1);
       }
     })
+  }
+
+  ngDoCheck() {
+    this.pathToMenuMap = {
+      ...this.pathToMenuMap,
+      auth: this.auth.isAuthenticated ? "Выход" : "Вход"
+    };
   }
 
 
