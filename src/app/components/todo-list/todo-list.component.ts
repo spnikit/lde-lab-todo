@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {TodoService} from "../../services/todo.service";
 import {ITodoFilter, TodoModel} from "../../model/todo.model";
-import {Observable} from "rxjs";
+import {BehaviorSubject, combineLatest, map, Observable} from "rxjs";
 
 @Component({
   selector: 'lde-todo-list',
@@ -16,12 +16,22 @@ export class TodoListComponent {
     status: ''
   };
 
+  filterSubject = new BehaviorSubject(this.todoFilter);
+  filterActions$ = this.filterSubject.asObservable();
+
   constructor(private todoService: TodoService) {
   }
 
 
-  get todos$(): Observable<TodoModel[]>{
-    return this.todoService.todos$;
+  get todos$(): Observable<TodoModel[]> {
+    return combineLatest([
+      this.todoService.todos$,
+      this.filterActions$
+    ]).pipe(
+      map(([todos, filter]) => {
+        return this.filterTodoList(filter, todos);
+      })
+    );
   }
 
   get todos() {
@@ -33,7 +43,7 @@ export class TodoListComponent {
     this.todoFilter.status = filterValue.status;
   }
 
-  filterTodoList(filter: ITodoFilter, list: TodoModel[]){
+  filterTodoList(filter: ITodoFilter, list: TodoModel[]) {
     if (filter.search && !filter.status) {
       return list.filter(
         todo => todo.task.toLowerCase().includes(filter.search.toLowerCase())
