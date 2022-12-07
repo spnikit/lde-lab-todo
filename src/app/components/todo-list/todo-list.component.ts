@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {TodoService} from "../../services/todo.service";
 import {ITodoFilter, TodoModel} from "../../model/todo.model";
-import {BehaviorSubject, combineLatest, map, Observable} from "rxjs";
+import {combineLatest, map, Observable} from "rxjs";
 
 @Component({
   selector: 'lde-todo-list',
@@ -11,13 +11,6 @@ import {BehaviorSubject, combineLatest, map, Observable} from "rxjs";
 })
 export class TodoListComponent {
 
-  todoFilter: ITodoFilter = {
-    search: '',
-    status: ''
-  };
-
-  filterSubject = new BehaviorSubject(this.todoFilter);
-  filterActions$ = this.filterSubject.asObservable();
 
   constructor(private todoService: TodoService) {
   }
@@ -26,7 +19,7 @@ export class TodoListComponent {
   get todos$(): Observable<TodoModel[]> {
     return combineLatest([
       this.todoService.todos$,
-      this.filterActions$
+      this.todoService.filterActions$
     ]).pipe(
       map(([todos, filter]) => {
         return this.filterTodoList(filter, todos);
@@ -34,13 +27,28 @@ export class TodoListComponent {
     );
   }
 
-  get todos() {
-    return this.filterTodoList(this.todoFilter, this.todoService.todos);
-  }
+  // get todos() {
+  //   return this.filterTodoList(this.todoFilter, this.todoService.todos);
+  // }
 
   onSetFilter(filterValue: ITodoFilter) {
-    this.todoFilter.search = filterValue.search;
-    this.todoFilter.status = filterValue.status;
+    this.todoService.updateFilter(filterValue);
+  }
+
+  todoTrackBy(index: number, todo: TodoModel) {
+    return todo.id;
+  }
+
+  onCreate(task: string) {
+    this.todoService.addTodo(task);
+  }
+
+  onUpdate(todo: TodoModel) {
+    this.todoService.changeStatus(todo);
+  }
+
+  onDelete(todo: TodoModel) {
+    this.todoService.deleteTodo(todo);
   }
 
   filterTodoList(filter: ITodoFilter, list: TodoModel[]) {
@@ -63,23 +71,6 @@ export class TodoListComponent {
     }
     return list;
   }
-
-  todoTrackBy(index: number, todo: TodoModel) {
-    return todo.id;
-  }
-
-  onCreate(task: string) {
-    this.todoService.addTodo(task);
-  }
-
-  onUpdate(todo: TodoModel) {
-    this.todoService.changeStatus(todo);
-  }
-
-  onDelete(todo: TodoModel) {
-    this.todoService.deleteTodo(todo);
-  }
-
 
 }
 

@@ -1,5 +1,5 @@
 <div class="todo-list">
-  <ng-container *ngIf="todos$ | async; else loading">
+  <ng-container *ngIf="todos$ | async as todos; else loading">
     <lde-todo
       *ngFor="let todo of todos; trackBy: todoTrackBy"
       [todo]="todo"
