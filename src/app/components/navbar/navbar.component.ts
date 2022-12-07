@@ -36,7 +36,9 @@ export class NavbarComponent implements OnInit, DoCheck {
       // show snackbar if not logged in
       if (event instanceof RouterEvent) {
         if (event.url === "/list" && !this.auth.isAuthenticated) {
-          this._snackBar.open("Залогиньтесь для доступа к ToDo", "Хорошо!")
+          this._snackBar.open("Залогиньтесь для доступа к ToDo", "Хорошо!", {
+            duration: 3000
+          })
         }
       }
       // detect changes in routing and apply current path to activeLink
