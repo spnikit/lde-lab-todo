@@ -41,6 +41,4 @@ export class TodoComponent {
   }
 }
 
-// todo: how to implement style and classes pick correctly?
-// todo: maybe rename to todoCard
-// todo: change todo with 2-way data binding
+

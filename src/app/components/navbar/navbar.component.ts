@@ -58,5 +58,4 @@ export class NavbarComponent implements OnInit, DoCheck {
 
 }
 
-//todo: change header link names with pipe
-//todo: play with styles
+

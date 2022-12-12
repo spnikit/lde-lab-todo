@@ -74,4 +74,3 @@ export class TodoListComponent {
 
 }
 
-//todo: отобразить уведомление, когда лист пустой

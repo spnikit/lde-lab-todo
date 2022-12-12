@@ -36,7 +36,7 @@ export class AuthComponent {
           error: errorObj => {
             const error = errorObj.error;
             if (error && error instanceof Array) {
-              this.errorMessage = error[0];
+              this.errorMessage = error.reduce((acc, curr) => acc + "\n" + curr, "");
             } else {
               this.errorMessage = errorObj.error.message
             }
@@ -46,4 +46,3 @@ export class AuthComponent {
   }
 }
 
-//todo: show error message when there is any?!

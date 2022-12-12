@@ -1,11 +1,13 @@
 <div class="todo-list">
-  <ng-container *ngIf="todos$ | async as todos; else loading">
-    <lde-todo
-      *ngFor="let todo of todos; trackBy: todoTrackBy"
-      [todo]="todo"
-      (changeStatus)="onUpdate($event)"
-      (deleteTodo)="onDelete($event)"
-    ></lde-todo>
+  <ng-container *ngIf="(todos$ | async) as todos">
+    <ng-container *ngIf="todos.length; else loading">
+      <lde-todo
+        *ngFor="let todo of todos; trackBy: todoTrackBy"
+        [todo]="todo"
+        (changeStatus)="onUpdate($event)"
+        (deleteTodo)="onDelete($event)"
+      ></lde-todo>
+    </ng-container>
   </ng-container>
 
   <lde-new-todo (newTodo)="onCreate($event)"></lde-new-todo>
