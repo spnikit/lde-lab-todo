@@ -1,19 +1,26 @@
-<form *ngIf="!auth.isAuthenticated; else logoutBtn"
-       ngForm (ngSubmit)="handelSubmit(form)"
+<form [formGroup]="loginForm"
+      *ngIf="!auth.isAuthenticated; else logoutBtn"
+      (ngSubmit)="handelSubmit()"
       #form="ngForm" class="form">
   <mat-form-field class="full-width">
     <mat-label>Email:</mat-label>
-    <input [(ngModel)]="email" matInput name="email" type="email" required>
+    <input formControlName="email" matInput name="email" type="email" required>
+    <mat-spinner
+      *ngIf="loginForm.pending"
+      matSuffix
+      diameter="16"
+      style="display: inline-flex"
+    ></mat-spinner>
   </mat-form-field>
 
   <mat-form-field class="full-width">
     <mat-label>Password</mat-label>
-    <input [(ngModel)]="password" matInput name="password" type="password" required>
+    <input formControlName="password" matInput name="password" type="password" required>
   </mat-form-field>
 
   <button type="submit" mat-raised-button color="primary">Войти</button>
 
-  <mat-error *ngIf="errorMessage" class="error" >
+  <mat-error *ngIf="errorMessage" class="error">
     {{errorMessage}}
   </mat-error>
 
@@ -22,5 +29,6 @@
 
 <ng-template #logoutBtn>
   <button (click)="auth.logout()"
-          type="button" mat-raised-button color="primary">Выйти</button>
+          type="button" mat-raised-button color="primary">Выйти
+  </button>
 </ng-template>

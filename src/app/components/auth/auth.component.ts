@@ -1,29 +1,60 @@
-import {Component} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormControlStatus, FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {EmailLoginValidator} from "../../validators/emailLogin.validator";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'lde-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
 
-  email: string = "";
-  password: string = "";
   errorMessage: string = "";
+  spinner: boolean = false;
+
+  loginForm!: FormGroup<{
+    email: FormControl,
+    password: FormControl
+  }>;
 
   constructor(
     public auth: AuthService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {
   }
 
-  handelSubmit(form: NgForm) {
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ["", {
+        asyncValidators: EmailLoginValidator.checkIfStarWarsHero(this.http),
+        updateOn: "blur"
+      }],
+      password: [""]
+    });
 
-    if (form.valid) {
-      this.auth.login(this.email, this.password)
+    const emailControl = this.loginForm.get("email");
+
+    emailControl?.statusChanges.subscribe((status: FormControlStatus) => {
+      if(status === "INVALID"){
+        this.errorMessage = emailControl?.getError("starwarsError")
+      } else {
+        this.errorMessage = "";
+      }
+    });
+
+  }
+
+  handelSubmit() {
+
+    if (this.loginForm.valid) {
+      const {email, password} = this.loginForm.value;
+
+      this.auth.login(email, password)
         .subscribe({
           next: result => {
             // redirect to another page.
@@ -44,5 +75,7 @@ export class AuthComponent {
         })
     }
   }
+
+
 }
 
